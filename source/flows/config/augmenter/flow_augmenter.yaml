@@ -1,0 +1,6 @@
+_target_: flows.augmenters.flow_augmenter.FlowAugmenter
+
+perc_time: 0.2
+alpha: 0.01
+num_classes: ${datamodule.num_classes}
+checkpoint_path: /home/mzieba/pprai-2024-augmentation-flows/storage/flows/outputs/train_flow/runs/2024-01-28_23-28-08/checkpoints/epoch_009.ckpt

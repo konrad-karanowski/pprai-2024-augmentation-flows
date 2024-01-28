@@ -1,0 +1,28 @@
+_target_: flows.lightning_model.classifier.Classifier
+
+
+num_classes: ${datamodule.num_classes}
+
+augmenter: ${augmenter}
+
+
+model: 
+  _target_: flows.models.net.Net
+  in_dims: ${datamodule.embedding_dim}
+  out_dims: ${datamodule.num_classes}
+
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 0.0001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 10
+
+
+# compile model for faster training with pytorch 2.0
+compile: false

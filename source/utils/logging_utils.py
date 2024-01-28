@@ -31,16 +31,22 @@ def log_hyperparameters(object_dict: Dict[str, Any]) -> None:
         logger.warning("Logger not found! Skipping hyperparameter logging...")
         return
 
-    hparams["model"] = config["model"]
 
-    # save number of model parameters
-    hparams["model/params/total"] = sum(p.numel() for p in model.parameters())
-    hparams["model/params/trainable"] = sum(
-        p.numel() for p in model.parameters() if p.requires_grad
-    )
-    hparams["model/params/non_trainable"] = sum(
-        p.numel() for p in model.parameters() if not p.requires_grad
-    )
+    if 'flow' in config.keys():
+        hparams['flow'] = config['flow']
+
+    
+    if 'augmenter' in config.keys():
+        if config['augmenter']['_target_'].split('.')[-1] == 'NoneAugmenter':
+            hparams['augmentation'] = 'no augmenter'
+            hparams['frequency'] = 0
+            hparams['alpha'] = 0
+        else:
+            hparams['augmentation'] = f'{type(model.augmenter.flow)}'
+            hparams['alpha'] = config['augmenter']['alpha']
+            hparams['frequency'] = config['augmenter']['perc_time']
+
+    
 
     hparams["datamodule"] = config["datamodule"]
     hparams["trainer"] = config["trainer"]

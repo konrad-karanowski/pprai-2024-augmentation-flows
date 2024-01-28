@@ -1,0 +1,19 @@
+_target_: flows.datasets.datamodule.Datamodule
+
+data_path: "${paths.data_dir}/arxiv100_10percent.csv"
+target_path: "${paths.data_dir}/arxiv100_10percent_bert.csv"
+embeddings_path: "${paths.data_dir}/embeddings/"
+force_reprocess: false
+
+language_model: "bert-base-cased"
+max_length: 512
+padding: true
+truncation: true
+
+
+embedding_dim: 768
+num_classes: 10
+use_cuda: true
+
+
+batch_size: 768

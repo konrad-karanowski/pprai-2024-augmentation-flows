@@ -1,0 +1,17 @@
+_target_: flows.lightning_model.flow_model.FlowAugmentationModel
+
+num_classes: ${datamodule.num_classes}
+
+flow: ${flow}
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.0001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  T_max: 1000
+
+# compile model for faster training with pytorch 2.0
+compile: false

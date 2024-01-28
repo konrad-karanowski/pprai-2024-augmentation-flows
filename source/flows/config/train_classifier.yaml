@@ -1,0 +1,63 @@
+# @package _global_
+
+# specify here default configuration
+# order of defaults determines the order in which configs override each other
+defaults:
+
+  # ===================================================================================
+  # OVERRIDE
+  # ===================================================================================
+  - _self_
+
+  # ===================================================================================
+  # CORE - core things for the project such as paths, hydra behaviour, logger etc
+  # ===================================================================================
+  - core: default
+  - hydra: default
+  - paths: default
+  - logger: wandb
+
+  # ===================================================================================
+  # EXTRAS
+  # ===================================================================================
+  - extras: default
+
+  # ===================================================================================
+  # DATASET - dataset related config
+  # ===================================================================================
+  - datamodule: arxiv_bert
+
+  # ===================================================================================
+  # MODEL - model related configs
+  # ===================================================================================
+  - augmenter: none
+  - lightning_model: classifier
+
+  # ===================================================================================
+  # training related
+  # ===================================================================================
+  - trainer: default
+  - callbacks: default
+
+  # ===================================================================================
+  # OPTIONAL - optional configs 
+  # ===================================================================================
+  # for multiple configs
+  - experimental_setup: null
+  # config for hyperparameter optimization
+  - hparams_search: null
+  # optional local config for machine/user specific settings
+  # it's optional since it doesn't need to exist and is excluded from version control
+  - optional local: default
+  # debugging config (enable through command line, e.g. `python train.py debug=default)
+  - debug: null
+
+# task name, determines output directory path
+task_name: "train_classifier"
+
+# for checkpoint, if we want to reasume the training
+checkpoint_path: null
+
+# if we want to train and/or test
+train : true
+test: true

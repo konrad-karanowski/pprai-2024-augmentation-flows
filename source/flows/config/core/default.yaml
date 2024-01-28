@@ -1,0 +1,9 @@
+# this is "project metadata"
+
+project_name: pprai2024
+tags: ['pprai2024']
+group: 'default'
+version: 1.0
+
+# seed for easy reproducebility
+seed:  0

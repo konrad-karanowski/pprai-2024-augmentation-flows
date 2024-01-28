@@ -1,0 +1,11 @@
+_target_: flows.models.flows.nice.cNICE
+
+hidden_features: ${datamodule.embedding_dim}
+features: ${datamodule.embedding_dim}
+context_features: ${datamodule.num_classes}
+
+num_layers: 8
+num_blocks_per_layer: 2
+dropout_probability: 0.0
+batch_norm_within_layers: false
+batch_norm_between_layers: true
